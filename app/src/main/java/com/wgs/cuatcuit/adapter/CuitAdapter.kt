@@ -17,10 +17,15 @@ import kotlinx.android.synthetic.main.adapter_cuit.view.*
  */
 class CuitAdapter : RecyclerView.Adapter<CuitAdapter.ViewHolder>() {
 
-    val list = ArrayList<Cuit>()
+    private val list = ArrayList<Cuit>()
 
     val hashTagListener: ((hashTag: String) -> Unit)? = null
     val likeListener: ((data: Cuit) -> Unit)? = null
+
+    fun setList(list: List<Cuit>) {
+        this.list.clear()
+        this.list.addAll(list)
+    }
 
     override fun getItemCount(): Int {
         return list.size
@@ -36,13 +41,8 @@ class CuitAdapter : RecyclerView.Adapter<CuitAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val hashTagHelper: HashTagHelper
-
         init {
             itemView.apply {
-                hashTagHelper = HashTagHelper.Creator.create(ContextCompat.getColor(context, R.color.colorPrimary)) {
-                    hashTagListener?.invoke(it)
-                }
                 btn_like_toggle.setOnClickListener {
                     val data = list[adapterPosition]
                     likeListener?.invoke(data)
@@ -64,6 +64,9 @@ class CuitAdapter : RecyclerView.Adapter<CuitAdapter.ViewHolder>() {
                 }
 
                 txt_message.text = data.message
+                val hashTagHelper = HashTagHelper.Creator.create(ContextCompat.getColor(context, R.color.colorPrimary)) {
+                    hashTagListener?.invoke(it)
+                }
                 hashTagHelper.handle(txt_message)
 
                 if (!data.isLiked) {
