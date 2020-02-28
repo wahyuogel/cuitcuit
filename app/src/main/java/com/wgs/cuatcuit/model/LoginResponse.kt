@@ -1,8 +1,8 @@
-package com.wgs.cuatcuit.model.login
+package com.wgs.cuatcuit.model
 
 import com.google.gson.annotations.SerializedName
 
-class LoginModel {
+class LoginResponse {
 
     @SerializedName("email")
     var email: String? = null
@@ -10,4 +10,6 @@ class LoginModel {
     @SerializedName("password")
     var password: String? = null
 
+    @SerializedName("tokken")
+    var  token: String? = null
 }

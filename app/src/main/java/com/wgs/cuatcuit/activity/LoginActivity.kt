@@ -1,36 +1,63 @@
 package com.wgs.cuatcuit.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import androidx.lifecycle.Observer
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProviders
 import com.wgs.cuatcuit.R
+import com.wgs.cuatcuit.model.core.Resource
+import com.wgs.cuatcuit.viewmodel.LoginViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    var et_email = findViewById<EditText>(R.id.txt_email)
-    var et_password = findViewById<EditText>(R.id.txtPass)
-    var btn_login = findViewById<Button>(R.id.btn_login)
+//    val resource = MutableLiveData<Resource<Any>>()
+    private val viewModel by lazy { ViewModelProviders.of(this).get(LoginViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         initView()
+    }
+
+    private fun initViewModel() {
+        viewModel.resource.observe(this, Observer {
+            when (it?.status) {
+                Resource.LOADING -> onLoading()
+                Resource.SUCCESS -> onSuccess()
+                Resource.ERROR -> onFailure(it.error)
+            }
+        })
+    }
+
+    private fun fetchData() {
+        viewModel.postLogin(email = txt_email.text.toString(), pass = txtPass.text.toString())
+    }
+
+    private fun onLoading() {
+    }
+
+    private fun onSuccess() {
+    }
+
+    private fun onFailure(t: Throwable) {
     }
 
     private fun initView(){
         btn_login.setOnClickListener {
             onClickLogin()
         }
+
+        txt_sign_up.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
     }
 
     private fun onClickLogin(){
-        val email = et_email.text
-        val pass = et_password.text
-
-        if (email.isEmpty() || pass.isEmpty()){
+        if (txt_email.text.isEmpty() || txtPass.text.isEmpty()){
             Toast.makeText(this, "Form cannot be empty ", Toast.LENGTH_LONG).show()
         }else{
             loginRequest()
@@ -38,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginRequest(){
+        fetchData()
         Toast.makeText(this, "Login request ", Toast.LENGTH_LONG).show()
     }
 

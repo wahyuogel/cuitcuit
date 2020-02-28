@@ -2,9 +2,9 @@ package com.wgs.cuatcuit.api
 
 import com.wgs.cuatcuit.model.CuitListResponse
 import com.wgs.cuatcuit.model.CurrentWeatherResponse
+import com.wgs.cuatcuit.model.LoginResponse
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Created by Alvin Rusli on 01/24/2020.
@@ -24,4 +24,14 @@ interface ApiInterface {
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): Call<CuitListResponse>
+
+    @POST("/login")
+    fun postLogin(
+//        @Body()
+    ): Call<LoginResponse>
+
+    @POST("/register")
+    fun postRegister(
+//        @Body()
+    ): Call<LoginResponse>
 }
