@@ -23,7 +23,7 @@ object ApiUtils {
     private fun getRetrofit(baseUrl: String? = null): Retrofit {
         if (!ApiUtils::retrofit.isInitialized) {
             retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl ?: "http://api.openweathermap.org/")
+                .baseUrl(baseUrl ?: "35.187.237.58:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getOkHttpClient())
                 .build()
