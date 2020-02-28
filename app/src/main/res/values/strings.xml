@@ -6,6 +6,8 @@
     <string name="Signup">Signup</string>
     <string name="text_posted_at_n">Posted at: %1$s</string>
 
+    <string name="action_search">Search</string>
+    <string name="action_logout">Log Out</string>
     <string name="action_like">Like</string>
     <string name="action_unlike">Unlike</string>
     <string name="title_activity_cuit">CuitActivity</string>

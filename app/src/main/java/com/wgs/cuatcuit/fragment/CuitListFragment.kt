@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_cuit_list.*
  */
 class CuitListFragment : Fragment() {
 
-    private val query by lazy { arguments?.getString(KEY_QUERY) }
+    private var query: String? = null
 
     private val adapter by lazy { CuitAdapter() }
 
@@ -33,6 +33,7 @@ class CuitListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        query = arguments?.getString(KEY_QUERY)
         initViewModel()
         initView()
         fetchData()
@@ -87,6 +88,11 @@ class CuitListFragment : Fragment() {
         swipe_refresh_cuit.isRefreshing = false
         progress_load.visibility = View.GONE
         txt_error.visibility = View.VISIBLE
+    }
+
+    fun setQuery(query: String?) {
+        this.query = query
+        viewModel.refreshCuitList(query)
     }
 
     companion object {

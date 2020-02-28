@@ -19,8 +19,9 @@ interface ApiInterface {
     ): Call<CurrentWeatherResponse>
 
     @GET("products")
+//    @GET("content")
     fun getCuitList(
-        @Query("query") searchQuery: String?,
+        @Query("search") searchQuery: String?,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): Call<CuitListResponse>

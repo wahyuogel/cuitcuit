@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.volokh.danylo.hashtaghelper.HashTagHelper
 import com.wgs.cuatcuit.R
 import com.wgs.cuatcuit.model.Cuit
@@ -58,7 +57,7 @@ class CuitAdapter : RecyclerView.Adapter<CuitAdapter.ViewHolder>() {
 
                 if (!data.image.isNullOrBlank()) {
                     layout_image.visibility = View.VISIBLE
-                    Picasso.get().load(data.image).into(img_cuit)
+                    img_cuit.setImageURI(data.image)
                 } else {
                     layout_image.visibility = View.GONE
                 }
