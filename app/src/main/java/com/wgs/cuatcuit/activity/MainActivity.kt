@@ -1,7 +1,8 @@
-package com.wgs.cuatcuit
+package com.wgs.cuatcuit.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wgs.cuatcuit.R
 
 class MainActivity : AppCompatActivity() {
 
