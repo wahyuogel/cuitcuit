@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">CuatCuit</string>
 
+    <string name="Password">Password</string>
+    <string name="Login">Log in</string>
+    <string name="Signup">Signup</string>
     <string name="text_posted_at_n">Posted at: %1$s</string>
 
     <string name="action_like">Like</string>
