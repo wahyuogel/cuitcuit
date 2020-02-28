@@ -45,4 +45,6 @@ dependencies {
 
     debugImplementation "com.ashokvarma.android:gander-persistence:3.1.0"
     releaseImplementation "com.ashokvarma.android:gander-no-op:3.1.0"
+
+    implementation "com.github.danylovolokh:hashtag-helper:1.1.0"
 }
