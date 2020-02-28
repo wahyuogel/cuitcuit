@@ -5,4 +5,5 @@
 
     <string name="action_like">Like</string>
     <string name="action_unlike">Unlike</string>
+    <string name="title_activity_cuit">CuitActivity</string>
 </resources>
