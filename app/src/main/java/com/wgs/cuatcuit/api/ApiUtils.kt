@@ -16,14 +16,14 @@ object ApiUtils {
 
     private lateinit var retrofit: Retrofit
 
-    fun getInterface(): ApiInterface {
-        return getRetrofit().create(ApiInterface::class.java)
+    fun getInterface(baseUrl: String? = null): ApiInterface {
+        return getRetrofit(baseUrl).create(ApiInterface::class.java)
     }
 
-    private fun getRetrofit(): Retrofit {
+    private fun getRetrofit(baseUrl: String? = null): Retrofit {
         if (!ApiUtils::retrofit.isInitialized) {
             retrofit = Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/")
+                .baseUrl(baseUrl ?: "http://api.openweathermap.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getOkHttpClient())
                 .build()
